@@ -1,0 +1,4604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Ahmed Faisal - Student Developer building Python, AI, web development, automation and business applications.">
+
+    <meta name="author" content="Ahmed Faisal">
+
+    <title>Ahmed Faisal | Student Developer</title>
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #060b16;
+            --bg-2: #0a1020;
+            --card: rgba(15, 23, 42, 0.72);
+            --card-solid: #0f172a;
+            --border: rgba(148, 163, 184, 0.14);
+
+            --text: #f8fafc;
+            --muted: #94a3b8;
+
+            --primary: #38bdf8;
+            --primary-2: #818cf8;
+            --success: #22c55e;
+
+            --shadow:
+                0 25px 80px rgba(0, 0, 0, 0.35);
+
+            --radius: 20px;
+        }
+
+        body {
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(56, 189, 248, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(129, 140, 248, 0.10),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
+
+        #particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -3;
+            opacity: 0.7;
+        }
+
+        .grid-background {
+            position: fixed;
+            inset: 0;
+            z-index: -4;
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(148, 163, 184, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(148, 163, 184, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 85%
+                );
+        }
+
+        .glow {
+            position: fixed;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(100px);
+            opacity: 0.10;
+            z-index: -2;
+        }
+
+        .glow.one {
+            background: #38bdf8;
+            top: 10%;
+            left: -180px;
+        }
+
+        .glow.two {
+            background: #818cf8;
+            right: -180px;
+            top: 50%;
+        }
+
+
+        /* =========================================================
+           LOADER
+        ========================================================= */
+
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: #050914;
+            z-index: 99999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition:
+                opacity 0.7s ease,
+                visibility 0.7s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 45px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .loader-logo span {
+            color: var(--primary);
+        }
+
+        .loader-bar {
+            width: 180px;
+            height: 4px;
+            background: #172033;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--primary-2)
+            );
+            animation: loading 1.7s ease forwards;
+        }
+
+        @keyframes loading {
+            to {
+                width: 100%;
+            }
+        }
+
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 5000;
+
+            background: rgba(6, 11, 22, 0.72);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid transparent;
+
+            transition:
+                0.3s ease;
+        }
+
+        nav.scrolled {
+            border-bottom-color: var(--border);
+            background: rgba(6, 11, 22, 0.88);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+
+            padding:
+                18px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 600;
+
+            position: relative;
+
+            transition:
+                color 0.25s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 2px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary),
+                    var(--primary-2)
+                );
+
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 9px 15px;
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-2)
+                );
+
+            color: #020617 !important;
+            font-weight: 800 !important;
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 27px;
+            color: white;
+        }
+
+
+        /* =========================================================
+           GENERAL
+        ========================================================= */
+
+        .container {
+            width: min(1200px, calc(100% - 50px));
+            margin: auto;
+        }
+
+        section {
+            padding: 110px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 55px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 13px;
+            border-radius: 50px;
+
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+
+            color: var(--primary);
+
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(34px, 5vw, 48px);
+            line-height: 1.1;
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+        }
+
+        .section-header p {
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 13px;
+
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            background: rgba(34, 197, 94, 0.07);
+
+            border-radius: 50px;
+
+            color: #86efac;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+
+            box-shadow:
+                0 0 0 5px rgba(34, 197, 94, 0.10);
+
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.65;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 82px);
+            line-height: 0.98;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 25px;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    100deg,
+                    #38bdf8,
+                    #818cf8,
+                    #c084fc
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            background-size: 200% auto;
+
+            animation:
+                gradientMove 5s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .hero-role {
+            min-height: 35px;
+
+            font-size: 22px;
+            color: #cbd5e1;
+
+            margin-bottom: 20px;
+        }
+
+        .typing {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 23px;
+            background: var(--primary);
+            margin-left: 4px;
+            vertical-align: middle;
+
+            animation:
+                blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero-description {
+            max-width: 680px;
+
+            color: var(--muted);
+            font-size: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            padding: 13px 20px;
+
+            border-radius: 11px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            border: 1px solid transparent;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    #818cf8
+                );
+
+            color: #020617;
+
+            box-shadow:
+                0 10px 35px rgba(56, 189, 248, 0.15);
+        }
+
+        .btn-primary:hover {
+            box-shadow:
+                0 15px 45px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn-secondary {
+            border-color: var(--border);
+            background: rgba(15, 23, 42, 0.45);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(56, 189, 248, 0.45);
+        }
+
+
+        /* HERO CARD */
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-card {
+            width: 330px;
+            padding: 30px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17, 24, 39, 0.95),
+                    rgba(15, 23, 42, 0.72)
+                );
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            position: relative;
+            overflow: hidden;
+
+            animation: floatCard 5s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .hero-card::before {
+            content: "";
+
+            position: absolute;
+            width: 170px;
+            height: 170px;
+
+            top: -80px;
+            right: -70px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+            filter: blur(70px);
+
+            opacity: 0.18;
+        }
+
+        .avatar {
+            width: 145px;
+            height: 145px;
+
+            margin: 5px auto 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-2)
+                );
+
+            color: #020617;
+
+            font-size: 48px;
+            font-weight: 900;
+
+            box-shadow:
+                0 0 0 10px rgba(56, 189, 248, 0.05),
+                0 20px 50px rgba(56, 189, 248, 0.15);
+        }
+
+        .hero-card h3 {
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .hero-card-role {
+            text-align: center;
+            color: var(--primary);
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .hero-mini-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .mini-stat {
+            padding: 13px;
+
+            border-radius: 13px;
+
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border);
+
+            text-align: center;
+        }
+
+        .mini-stat strong {
+            display: block;
+            font-size: 20px;
+        }
+
+        .mini-stat span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .floating-tag {
+            position: absolute;
+
+            padding: 8px 12px;
+
+            border-radius: 10px;
+
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+            animation: floatTag 4s ease-in-out infinite;
+        }
+
+        .tag-one {
+            top: 15%;
+            left: -20px;
+        }
+
+        .tag-two {
+            bottom: 15%;
+            right: -25px;
+            animation-delay: 1s;
+        }
+
+        @keyframes floatTag {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 70px;
+        }
+
+        .stat-card {
+            padding: 25px;
+
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            text-align: center;
+
+            transition: 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .stat-number {
+            font-size: 31px;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-2)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .glass-card {
+            background: var(--card);
+            backdrop-filter: blur(14px);
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            padding: 30px;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.22);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: rgba(56, 189, 248, 0.08);
+
+            font-size: 23px;
+
+            margin-bottom: 18px;
+        }
+
+        .glass-card h3 {
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .glass-card p {
+            color: var(--muted);
+        }
+
+        .about-points {
+            margin-top: 20px;
+            display: grid;
+            gap: 11px;
+        }
+
+        .about-point {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .about-point span:first-child {
+            color: var(--primary);
+        }
+
+
+        /* =========================================================
+           SKILLS
+        ========================================================= */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-card {
+            padding: 22px;
+
+            border: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.55);
+
+            border-radius: 15px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 11px;
+        }
+
+        .skill-name {
+            font-weight: 700;
+        }
+
+        .skill-percent {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .skill-bar {
+            height: 7px;
+
+            background: #172033;
+
+            border-radius: 50px;
+
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            width: 0;
+
+            height: 100%;
+
+            border-radius: 50px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary),
+                    var(--primary-2)
+                );
+
+            transition:
+                width 1.5s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        /* =========================================================
+           PROJECTS
+        ========================================================= */
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 9px;
+            flex-wrap: wrap;
+
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            padding: 9px 15px;
+
+            border-radius: 50px;
+
+            border: 1px solid var(--border);
+
+            background: rgba(15, 23, 42, 0.55);
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.25s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.35);
+            color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15, 23, 42, 0.82),
+                    rgba(8, 15, 29, 0.8)
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .project-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -90px;
+            top: -90px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+            filter: blur(70px);
+
+            opacity: 0.07;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.3);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.28);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+
+            color: #334155;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .project-icon {
+            width: 57px;
+            height: 57px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(56, 189, 248, 0.12),
+                    rgba(129, 140, 248, 0.08)
+                );
+
+            border: 1px solid rgba(56, 189, 248, 0.12);
+
+            font-size: 28px;
+
+            margin-bottom: 20px;
+        }
+
+        .project-category {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            margin-bottom: 7px;
+        }
+
+        .project-card h3 {
+            font-size: 21px;
+            margin-bottom: 9px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 14px;
+
+            min-height: 70px;
+
+            margin-bottom: 18px;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+
+            margin-bottom: 20px;
+        }
+
+        .tech {
+            padding: 5px 9px;
+
+            border-radius: 50px;
+
+            background: #0b1324;
+            border: 1px solid var(--border);
+
+            color: #cbd5e1;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .project-btn {
+            flex: 1;
+
+            padding: 10px;
+
+            border-radius: 9px;
+
+            border: 1px solid var(--border);
+
+            background: transparent;
+
+            color: white;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            transition: 0.25s ease;
+        }
+
+        .project-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .project-btn.primary {
+            background: rgba(56, 189, 248, 0.09);
+            border-color: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+        }
+
+
+        /* =========================================================
+           SERVICES
+        ========================================================= */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .service-card {
+            padding: 28px;
+
+            border: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.55);
+
+            border-radius: 18px;
+
+            transition: 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.25);
+        }
+
+        .service-icon {
+            font-size: 30px;
+            margin-bottom: 18px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 9px;
+            font-size: 19px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .cta {
+            position: relative;
+            overflow: hidden;
+
+            padding: 55px;
+
+            border-radius: 25px;
+
+            border: 1px solid rgba(56, 189, 248, 0.18);
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(56, 189, 248, 0.12),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(129, 140, 248, 0.12),
+                    transparent 35%
+                ),
+                rgba(15, 23, 42, 0.7);
+
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: clamp(30px, 5vw, 45px);
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            color: var(--muted);
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.75fr 1.25fr;
+            gap: 25px;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 13px;
+        }
+
+        .contact-item {
+            padding: 20px;
+
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            transition: 0.25s ease;
+        }
+
+        .contact-item:hover {
+            border-color: rgba(56, 189, 248, 0.25);
+            transform: translateX(4px);
+        }
+
+        .contact-icon {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .contact-item span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .contact-form {
+            padding: 28px;
+
+            background: rgba(15, 23, 42, 0.62);
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            background: #091120;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            color: white;
+
+            outline: none;
+
+            transition: 0.25s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: rgba(56, 189, 248, 0.5);
+
+            box-shadow:
+                0 0 0 3px rgba(56, 189, 248, 0.05);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 35px 0;
+
+            border-top: 1px solid var(--border);
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #94a3b8;
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(2, 6, 23, 0.82);
+            backdrop-filter: blur(15px);
+
+            z-index: 9000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            width: min(850px, 100%);
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0f172a,
+                    #091120
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 23px;
+
+            padding: 32px;
+
+            transform: translateY(25px) scale(0.97);
+
+            transition:
+                transform 0.35s ease;
+        }
+
+        .modal.active .modal-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            float: right;
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 10px;
+
+            border: 1px solid var(--border);
+
+            background: rgba(15, 23, 42, 0.8);
+
+            color: white;
+
+            font-size: 18px;
+        }
+
+        .modal-icon {
+            font-size: 55px;
+            margin-bottom: 12px;
+        }
+
+        .modal-category {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-box h2 {
+            font-size: 35px;
+            margin: 5px 0 10px;
+        }
+
+        .modal-description {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .modal-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 9px;
+
+            margin: 20px 0 25px;
+        }
+
+        .modal-feature {
+            padding: 11px 13px;
+
+            border-radius: 9px;
+
+            background: #0a1324;
+            border: 1px solid var(--border);
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+        }
+
+        .modal-feature::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .modal-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-bottom: 25px;
+        }
+
+        .modal-tech span {
+            padding: 7px 11px;
+
+            border-radius: 50px;
+
+            background: rgba(56, 189, 248, 0.08);
+
+            border: 1px solid rgba(56, 189, 248, 0.15);
+
+            color: #bae6fd;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           REVEAL ANIMATION
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+
+            transition:
+                opacity 0.75s ease,
+                transform 0.75s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        .back-top {
+            position: fixed;
+
+            right: 22px;
+            bottom: 22px;
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 13px;
+
+            border: 1px solid var(--border);
+
+            background: rgba(15, 23, 42, 0.88);
+
+            backdrop-filter: blur(10px);
+
+            color: white;
+
+            z-index: 4000;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(10px);
+
+            transition: 0.3s ease;
+        }
+
+        .back-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-top:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                margin-top: 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .container {
+                width: min(100% - 30px, 600px);
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .nav-links {
+                position: absolute;
+
+                top: 70px;
+                left: 15px;
+                right: 15px;
+
+                padding: 18px;
+
+                flex-direction: column;
+                gap: 3px;
+
+                border-radius: 15px;
+
+                background: rgba(8, 15, 29, 0.98);
+                border: 1px solid var(--border);
+
+                box-shadow: var(--shadow);
+
+                opacity: 0;
+                visibility: hidden;
+
+                transform: translateY(-10px);
+
+                transition: 0.25s ease;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 11px;
+            }
+
+            .nav-cta {
+                text-align: center;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid,
+            .skills-grid,
+            .projects-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                letter-spacing: -2.5px;
+            }
+
+            .hero-card {
+                width: min(330px, 100%);
+            }
+
+            .floating-tag {
+                display: none;
+            }
+
+            .cta {
+                padding: 35px 20px;
+            }
+
+            .modal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-role {
+                font-size: 18px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .modal-box {
+                padding: 22px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================= -->
+
+    <canvas id="particles"></canvas>
+
+    <div class="grid-background"></div>
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+
+    <!-- =========================================================
+         LOADER
+    ========================================================= -->
+
+    <div class="loader" id="loader">
+
+        <div class="loader-content">
+
+            <div class="loader-logo">
+                Ahmed<span>Faisal</span>
+            </div>
+
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================= -->
+
+    <nav id="navbar">
+
+        <div class="nav-container">
+
+            <a href="#home" class="logo">
+                Ahmed<span>Faisal</span>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="Open menu">
+                ☰
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="#home" class="active">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#skills">
+                        Skills
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#projects">
+                        Projects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#services">
+                        Services
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact" class="nav-cta">
+                        Let's Talk
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================= -->
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section id="home">
+
+            <div class="container">
+
+                <div class="hero">
+
+                    <div class="hero-content reveal">
+
+                        <div class="hero-badge">
+                            <span class="status-dot"></span>
+                            Available for opportunities
+                        </div>
+
+                        <h1>
+                            Hi, I'm
+                            <span class="gradient-text">
+                                Ahmed Faisal
+                            </span>
+                        </h1>
+
+                        <div class="hero-role">
+
+                            I build
+                            <span
+                                class="typing"
+                                id="typingText">
+                            </span>
+
+                            <span class="cursor"></span>
+
+                        </div>
+
+                        <p class="hero-description">
+
+                            I'm a student developer who enjoys turning
+                            ideas into practical applications using
+                            Python, web technologies, AI, dashboards
+                            and automation.
+
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <a
+                                href="#projects"
+                                class="btn btn-primary">
+                                🚀 Explore My Projects
+                            </a>
+
+                            <a
+                                href="#contact"
+                                class="btn btn-secondary">
+                                💬 Contact Me
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HERO VISUAL -->
+
+                    <div class="hero-visual reveal delay-2">
+
+                        <div class="floating-tag tag-one">
+                            🐍 Python
+                        </div>
+
+                        <div class="floating-tag tag-two">
+                            🤖 AI Apps
+                        </div>
+
+                        <div class="hero-card">
+
+                            <div class="avatar">
+                                AF
+                            </div>
+
+                            <h3>
+                                Ahmed Faisal
+                            </h3>
+
+                            <p class="hero-card-role">
+                                Student Developer
+                            </p>
+
+                            <div class="hero-mini-stats">
+
+                                <div class="mini-stat">
+                                    <strong>9+</strong>
+                                    <span>Projects</span>
+                                </div>
+
+                                <div class="mini-stat">
+                                    <strong>5+</strong>
+                                    <span>Technologies</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO STATS -->
+
+                <div class="stats">
+
+                    <div class="stat-card reveal">
+                        <div class="stat-number counter" data-target="9">
+                            0
+                        </div>
+                        <div class="stat-label">
+                            Projects Built
+                        </div>
+                    </div>
+
+                    <div class="stat-card reveal delay-1">
+                        <div class="stat-number counter" data-target="5">
+                            0
+                        </div>
+                        <div class="stat-label">
+                            Core Technologies
+                        </div>
+                    </div>
+
+                    <div class="stat-card reveal delay-2">
+                        <div class="stat-number">
+                            AI
+                        </div>
+                        <div class="stat-label">
+                            Application Focus
+                        </div>
+                    </div>
+
+                    <div class="stat-card reveal delay-3">
+                        <div class="stat-number">
+                            ∞
+                        </div>
+                        <div class="stat-label">
+                            Ideas to Build
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+
+        <section id="about">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-label">
+                        👋 About Me
+                    </div>
+
+                    <h2>
+                        Building while
+                        <span class="gradient-text">
+                            learning
+                        </span>
+                    </h2>
+
+                    <p>
+                        I'm focused on learning through practical
+                        projects and turning ideas into working
+                        applications.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="glass-card reveal">
+
+                        <div class="card-icon">
+                            👨‍💻
+                        </div>
+
+                        <h3>
+                            Who I Am
+                        </h3>
+
+                        <p>
+                            I'm Ahmed Faisal, a student developer
+                            interested in Python, web development,
+                            AI applications, dashboards and
+                            automation.
+                        </p>
+
+                        <div class="about-points">
+
+                            <div class="about-point">
+                                <span>✓</span>
+                                <span>
+                                    Learn by building real projects
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <span>✓</span>
+                                <span>
+                                    Explore new technologies
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <span>✓</span>
+                                <span>
+                                    Focus on practical applications
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="glass-card reveal delay-1">
+
+                        <div class="card-icon">
+                            🎯
+                        </div>
+
+                        <h3>
+                            What I'm Working Toward
+                        </h3>
+
+                        <p>
+                            My goal is to keep improving my
+                            development skills, build useful
+                            software and gain experience by solving
+                            real-world problems.
+                        </p>
+
+                        <div class="about-points">
+
+                            <div class="about-point">
+                                <span>→</span>
+                                <span>
+                                    Python applications
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <span>→</span>
+                                <span>
+                                    AI-powered tools
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <span>→</span>
+                                <span>
+                                    Business dashboards
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <span>→</span>
+                                <span>
+                                    Automation solutions
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SKILLS
+        ====================================================== -->
+
+        <section id="skills">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-label">
+                        ⚡ Skills
+                    </div>
+
+                    <h2>
+                        Tools I
+                        <span class="gradient-text">
+                            work with
+                        </span>
+                    </h2>
+
+                    <p>
+                        Technologies I use while building my projects.
+                    </p>
+
+                </div>
+
+
+                <div class="skills-grid">
+
+                    <div class="skill-card reveal">
+
+                        <div class="skill-top">
+                            <span class="skill-name">
+                                Python
+                            </span>
+
+                            <span class="skill-percent">
+                                90%
+                            </span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div
+                                class="skill-progress"
+                                data-width="90%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill-card reveal delay-1">
+
+                        <div class="skill-top">
+                            <span class="skill-name">
+                                Streamlit
+                            </span>
+
+                            <span class="skill-percent">
+                                90%
+                            </span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div
+                                class="skill-progress"
+                                data-width="90%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill-card reveal">
+
+                        <div class="skill-top">
+                            <span class="skill-name">
+                                HTML & CSS
+                            </span>
+
+                            <span class="skill-percent">
+                                85%
+                            </span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div
+                                class="skill-progress"
+                                data-width="85%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill-card reveal delay-1">
+
+                        <div class="skill-top">
+                            <span class="skill-name">
+                                JavaScript
+                            </span>
+
+                            <span class="skill-percent">
+                                70%
+                            </span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div
+                                class="skill-progress"
+                                data-width="70%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill-card reveal">
+
+                        <div class="skill-top">
+                            <span class="skill-name">
+                                AI APIs
+                            </span>
+
+                            <span class="skill-percent">
+                                75%
+                            </span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div
+                                class="skill-progress"
+                                data-width="75%">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill-card reveal delay-1">
+
+                        <div class="skill-top">
+                            <span class="skill-name">
+                                Firebase
+                            </span>
+
+                            <span class="skill-percent">
+                                75%
+                            </span>
+                        </div>
+
+                        <div class="skill-bar">
+                            <div
+                                class="skill-progress"
+                                data-width="75%">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROJECTS
+        ====================================================== -->
+
+        <section id="projects">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-label">
+                        🚀 Portfolio
+                    </div>
+
+                    <h2>
+                        My
+                        <span class="gradient-text">
+                            Projects
+                        </span>
+                    </h2>
+
+                    <p>
+                        A collection of applications and experiments
+                        I've built while learning and developing.
+                    </p>
+
+                </div>
+
+
+                <!-- FILTERS -->
+
+                <div class="filter-buttons reveal">
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all">
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="ai">
+                        AI
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="python">
+                        Python
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="web">
+                        Web
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="business">
+                        Business
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="education">
+                        Education
+                    </button>
+
+                </div>
+
+
+                <div class="projects-grid">
+
+
+                    <!-- 01 AI STUDY ASSISTANT -->
+
+                    <article
+                        class="project-card reveal"
+                        data-category="ai education">
+
+                        <span class="project-number">
+                            01
+                        </span>
+
+                        <div class="project-icon">
+                            🧠
+                        </div>
+
+                        <div class="project-category">
+                            AI • Education
+                        </div>
+
+                        <h3>
+                            AI Study Assistant
+                        </h3>
+
+                        <p>
+                            An AI-powered study application focused
+                            on helping students understand topics
+                            and create learning materials.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">Python</span>
+                            <span class="tech">Streamlit</span>
+                            <span class="tech">AI</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('ai-assistant')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/AI-Study-Assistant"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 02 WORD GAMES -->
+
+                    <article
+                        class="project-card reveal delay-1"
+                        data-category="web">
+
+                        <span class="project-number">
+                            02
+                        </span>
+
+                        <div class="project-icon">
+                            🎮
+                        </div>
+
+                        <div class="project-category">
+                            Web • Games
+                        </div>
+
+                        <h3>
+                            Word Games Arena
+                        </h3>
+
+                        <p>
+                            A browser-based collection of interactive
+                            word and puzzle games designed around
+                            fun gameplay.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('word-games')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/Word-Games-Arena"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 03 AI STUDY HELPER -->
+
+                    <article
+                        class="project-card reveal delay-2"
+                        data-category="ai education">
+
+                        <span class="project-number">
+                            03
+                        </span>
+
+                        <div class="project-icon">
+                            🤖
+                        </div>
+
+                        <div class="project-category">
+                            AI • Education
+                        </div>
+
+                        <h3>
+                            AI Study Helper
+                        </h3>
+
+                        <p>
+                            An educational AI application with
+                            tools designed to support studying,
+                            practice and learning.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">Python</span>
+                            <span class="tech">Streamlit</span>
+                            <span class="tech">Gemini</span>
+                            <span class="tech">Firebase</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('study-helper')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/AI-Study-Helper"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 04 STUDYPRO -->
+
+                    <article
+                        class="project-card reveal"
+                        data-category="ai education">
+
+                        <span class="project-number">
+                            04
+                        </span>
+
+                        <div class="project-icon">
+                            📚
+                        </div>
+
+                        <div class="project-category">
+                            AI • Education
+                        </div>
+
+                        <h3>
+                            StudyPro AI
+                        </h3>
+
+                        <p>
+                            A study-focused AI application built
+                            around summaries, quizzes, notes,
+                            flashcards and learning tools.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">Python</span>
+                            <span class="tech">Streamlit</span>
+                            <span class="tech">Gemini</span>
+                            <span class="tech">Firebase</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('studypro')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/StudyPro-AI"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 05 CODEFORGE -->
+
+                    <article
+                        class="project-card reveal delay-1"
+                        data-category="ai python">
+
+                        <span class="project-number">
+                            05
+                        </span>
+
+                        <div class="project-icon">
+                            🧑‍💻
+                        </div>
+
+                        <div class="project-category">
+                            AI • Development
+                        </div>
+
+                        <h3>
+                            CodeForge AI Studio
+                        </h3>
+
+                        <p>
+                            An AI-focused development project exploring
+                            how AI can assist with coding and software
+                            development workflows.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">Python</span>
+                            <span class="tech">AI</span>
+                            <span class="tech">Streamlit</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('codeforge')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/CodeForge-AI-Studio"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 06 DEVELOPER -->
+
+                    <article
+                        class="project-card reveal delay-2"
+                        data-category="web">
+
+                        <span class="project-number">
+                            06
+                        </span>
+
+                        <div class="project-icon">
+                            💻
+                        </div>
+
+                        <div class="project-category">
+                            Web • Portfolio
+                        </div>
+
+                        <h3>
+                            Ahmed Faisal Developer
+                        </h3>
+
+                        <p>
+                            A developer-focused portfolio project
+                            created to present skills, projects and
+                            development work.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('developer')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/Ahmed-Faisal-Developer"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 07 AHMED DEV STUDIO -->
+
+                    <article
+                        class="project-card reveal"
+                        data-category="business python">
+
+                        <span class="project-number">
+                            07
+                        </span>
+
+                        <div class="project-icon">
+                            💼
+                        </div>
+
+                        <div class="project-category">
+                            Business • Python
+                        </div>
+
+                        <h3>
+                            Ahmed Dev Studio
+                        </h3>
+
+                        <p>
+                            A project request and management platform
+                            designed to organize development requests
+                            and project information.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">Python</span>
+                            <span class="tech">Streamlit</span>
+                            <span class="tech">SQLite</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('dev-studio')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/Ahmed_Dev_Studio"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 08 BIZMANAGER -->
+
+                    <article
+                        class="project-card reveal delay-1"
+                        data-category="business python">
+
+                        <span class="project-number">
+                            08
+                        </span>
+
+                        <div class="project-icon">
+                            📊
+                        </div>
+
+                        <div class="project-category">
+                            Business • Dashboard
+                        </div>
+
+                        <h3>
+                            BizManager
+                        </h3>
+
+                        <p>
+                            A business management dashboard designed
+                            to organize business information and
+                            provide useful management tools.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">Python</span>
+                            <span class="tech">Streamlit</span>
+                            <span class="tech">SQLite</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('bizmanager')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/BizManager"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 09 PIZZA -->
+
+                    <article
+                        class="project-card reveal delay-2"
+                        data-category="web">
+
+                        <span class="project-number">
+                            09
+                        </span>
+
+                        <div class="project-icon">
+                            🍕
+                        </div>
+
+                        <div class="project-category">
+                            Web • Interactive
+                        </div>
+
+                        <h3>
+                            Customize Pizza
+                        </h3>
+
+                        <p>
+                            An interactive web project focused on
+                            allowing users to create and customize
+                            their own pizza choices.
+                        </p>
+
+                        <div class="tech-list">
+
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+
+                        </div>
+
+                        <div class="project-actions">
+
+                            <button
+                                class="project-btn primary"
+                                onclick="openProject('pizza')">
+                                Details
+                            </button>
+
+                            <a
+                                class="project-btn"
+                                href="https://github.com/AhmedFaisalCareer/Customize-Pizza"
+                                target="_blank">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SERVICES
+        ====================================================== -->
+
+        <section id="services">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-label">
+                        🛠️ What I Build
+                    </div>
+
+                    <h2>
+                        Turning ideas into
+                        <span class="gradient-text">
+                            applications
+                        </span>
+                    </h2>
+
+                    <p>
+                        Areas I'm interested in building projects
+                        and practical tools.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            🐍
+                        </div>
+
+                        <h3>
+                            Python Applications
+                        </h3>
+
+                        <p>
+                            Practical Python applications for
+                            different tasks and workflows.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal delay-1">
+
+                        <div class="service-icon">
+                            📊
+                        </div>
+
+                        <h3>
+                            Business Dashboards
+                        </h3>
+
+                        <p>
+                            Interactive dashboards for organizing
+                            and viewing business information.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal delay-2">
+
+                        <div class="service-icon">
+                            🤖
+                        </div>
+
+                        <h3>
+                            AI Applications
+                        </h3>
+
+                        <p>
+                            AI-powered applications using modern
+                            AI APIs and tools.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            🌐
+                        </div>
+
+                        <h3>
+                            Web Development
+                        </h3>
+
+                        <p>
+                            Responsive websites and interactive
+                            browser-based applications.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal delay-1">
+
+                        <div class="service-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Automation
+                        </h3>
+
+                        <p>
+                            Simple automation ideas that can reduce
+                            repetitive work.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal delay-2">
+
+                        <div class="service-icon">
+                            🗄️
+                        </div>
+
+                        <h3>
+                            Data & Databases
+                        </h3>
+
+                        <p>
+                            Applications that organize and store
+                            useful information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="cta reveal">
+
+                    <div class="section-label">
+                        🚀 Let's Build
+                    </div>
+
+                    <h2>
+                        Have an idea?
+                    </h2>
+
+                    <p>
+                        I'm interested in building practical
+                        applications and learning through real
+                        projects.
+                    </p>
+
+                    <a
+                        href="#contact"
+                        class="btn btn-primary">
+                        💬 Start a Conversation
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div class="section-label">
+                        📬 Contact
+                    </div>
+
+                    <h2>
+                        Let's
+                        <span class="gradient-text">
+                            connect
+                        </span>
+                    </h2>
+
+                    <p>
+                        Have a project idea, question or opportunity?
+                        Send me a message.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-grid">
+
+
+                    <div class="contact-info">
+
+                        <a
+                            href="https://github.com/AhmedFaisalCareer"
+                            target="_blank"
+                            class="contact-item reveal">
+
+                            <div class="contact-icon">
+                                🐙
+                            </div>
+
+                            <strong>
+                                GitHub
+                            </strong>
+
+                            <span>
+                                View my projects and code
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="https://www.linkedin.com/"
+                            target="_blank"
+                            class="contact-item reveal delay-1">
+
+                            <div class="contact-icon">
+                                💼
+                            </div>
+
+                            <strong>
+                                LinkedIn
+                            </strong>
+
+                            <span>
+                                Connect with me professionally
+                            </span>
+
+                        </a>
+
+
+                        <div class="contact-item reveal delay-2">
+
+                            <div class="contact-icon">
+                                🚀
+                            </div>
+
+                            <strong>
+                                Open to Opportunities
+                            </strong>
+
+                            <span>
+                                Small projects, learning and
+                                development opportunities
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        class="contact-form reveal"
+                        action="https://formspree.io/f/xwlpvenq"
+                        method="POST">
+
+                        <input
+                            type="hidden"
+                            name="_subject"
+                            value="New Portfolio Contact">
+
+                        <div class="form-group">
+
+                            <label>
+                                Your Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Enter your name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Message
+                            </label>
+
+                            <textarea
+                                name="message"
+                                placeholder="Tell me about your idea..."
+                                required></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+                            Send Message →
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         PROJECT MODAL
+    ========================================================= -->
+
+    <div
+        class="modal"
+        id="projectModal">
+
+        <div class="modal-box">
+
+            <button
+                class="modal-close"
+                onclick="closeProject()">
+                ×
+            </button>
+
+            <div
+                class="modal-icon"
+                id="modalIcon">
+                🚀
+            </div>
+
+            <div
+                class="modal-category"
+                id="modalCategory">
+                Project
+            </div>
+
+            <h2 id="modalTitle">
+                Project
+            </h2>
+
+            <p
+                class="modal-description"
+                id="modalDescription">
+            </p>
+
+            <h3>
+                Key Features
+            </h3>
+
+            <div
+                class="modal-features"
+                id="modalFeatures">
+            </div>
+
+            <h3>
+                Technologies
+            </h3>
+
+            <div
+                class="modal-tech"
+                id="modalTech">
+            </div>
+
+            <a
+                id="modalGithub"
+                href="#"
+                target="_blank"
+                class="btn btn-primary">
+                View on GitHub ↗
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================= -->
+
+    <button
+        class="back-top"
+        id="backTop"
+        aria-label="Back to top">
+        ↑
+    </button>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © <span id="year"></span>
+                <strong>Ahmed Faisal</strong>.
+                Built with HTML, CSS & JavaScript.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =====================================================
+           LOADER
+        ===================================================== */
+
+        window.addEventListener("load", function () {
+
+            setTimeout(function () {
+
+                document
+                    .getElementById("loader")
+                    .classList.add("hidden");
+
+            }, 700);
+
+        });
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+
+            navLinks.classList.toggle("active");
+
+        });
+
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    navLinks.classList.remove("active");
+
+                });
+
+            });
+
+
+        /* =====================================================
+           NAVBAR SCROLL
+        ===================================================== */
+
+        const navbar =
+            document.getElementById("navbar");
+
+        const backTop =
+            document.getElementById("backTop");
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 40) {
+
+                navbar.classList.add("scrolled");
+
+            } else {
+
+                navbar.classList.remove("scrolled");
+
+            }
+
+
+            if (window.scrollY > 500) {
+
+                backTop.classList.add("show");
+
+            } else {
+
+                backTop.classList.remove("show");
+
+            }
+
+        });
+
+
+        backTop.addEventListener("click", function () {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+
+        /* =====================================================
+           TYPING EFFECT
+        ===================================================== */
+
+        const typingText =
+            document.getElementById("typingText");
+
+        const roles = [
+            "Python applications",
+            "AI-powered tools",
+            "business dashboards",
+            "web applications",
+            "automation projects"
+        ];
+
+        let roleIndex = 0;
+        let characterIndex = 0;
+        let deleting = false;
+
+
+        function typeRole() {
+
+            const currentRole =
+                roles[roleIndex];
+
+            if (!deleting) {
+
+                characterIndex++;
+
+                typingText.textContent =
+                    currentRole.substring(
+                        0,
+                        characterIndex
+                    );
+
+                if (
+                    characterIndex ===
+                    currentRole.length
+                ) {
+
+                    deleting = true;
+
+                    setTimeout(
+                        typeRole,
+                        1500
+                    );
+
+                    return;
+
+                }
+
+            } else {
+
+                characterIndex--;
+
+                typingText.textContent =
+                    currentRole.substring(
+                        0,
+                        characterIndex
+                    );
+
+                if (characterIndex === 0) {
+
+                    deleting = false;
+
+                    roleIndex =
+                        (roleIndex + 1) %
+                        roles.length;
+
+                }
+
+            }
+
+            setTimeout(
+                typeRole,
+                deleting ? 45 : 75
+            );
+
+        }
+
+        typeRole();
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ===================================================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target
+                                .classList
+                                .add("visible");
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(function (element) {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* =====================================================
+           SKILL BARS
+        ===================================================== */
+
+        const skillBars =
+            document.querySelectorAll(
+                ".skill-progress"
+            );
+
+
+        const skillObserver =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            const width =
+                                entry.target
+                                    .dataset
+                                    .width;
+
+                            entry.target.style.width =
+                                width;
+
+                            skillObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+
+        skillBars.forEach(function (bar) {
+
+            skillObserver.observe(bar);
+
+        });
+
+
+        /* =====================================================
+           COUNTERS
+        ===================================================== */
+
+        const counters =
+            document.querySelectorAll(".counter");
+
+        let countersStarted = false;
+
+
+        function animateCounters() {
+
+            if (countersStarted) {
+                return;
+            }
+
+            countersStarted = true;
+
+
+            counters.forEach(function (counter) {
+
+                const target =
+                    Number(
+                        counter.dataset.target
+                    );
+
+                let current = 0;
+
+                const increment =
+                    Math.max(
+                        1,
+                        Math.ceil(target / 25)
+                    );
+
+
+                const timer =
+                    setInterval(function () {
+
+                        current += increment;
+
+                        if (current >= target) {
+
+                            current = target;
+
+                            clearInterval(timer);
+
+                        }
+
+                        counter.textContent =
+                            current + "+";
+
+                    }, 45);
+
+            });
+
+        }
+
+
+        const statsSection =
+            document.querySelector(".stats");
+
+
+        const statsObserver =
+            new IntersectionObserver(
+                function (entries) {
+
+                    if (
+                        entries[0].isIntersecting
+                    ) {
+
+                        animateCounters();
+
+                        statsObserver.disconnect();
+
+                    }
+
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+
+        statsObserver.observe(statsSection);
+
+
+        /* =====================================================
+           PROJECT FILTER
+        ===================================================== */
+
+        const filterButtons =
+            document.querySelectorAll(
+                ".filter-btn"
+            );
+
+        const projectCards =
+            document.querySelectorAll(
+                ".project-card"
+            );
+
+
+        filterButtons.forEach(function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    filterButtons.forEach(
+                        function (btn) {
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    button.classList.add("active");
+
+
+                    const filter =
+                        button.dataset.filter;
+
+
+                    projectCards.forEach(
+                        function (card) {
+
+                            const categories =
+                                card.dataset.category;
+
+
+                            if (
+                                filter === "all" ||
+                                categories.includes(
+                                    filter
+                                )
+                            ) {
+
+                                card.style.display =
+                                    "block";
+
+                                setTimeout(
+                                    function () {
+
+                                        card.style.opacity =
+                                            "1";
+
+                                        card.style.transform =
+                                            "translateY(0)";
+
+                                    },
+                                    20
+                                );
+
+                            } else {
+
+                                card.style.opacity =
+                                    "0";
+
+                                card.style.transform =
+                                    "translateY(10px)";
+
+                                setTimeout(
+                                    function () {
+
+                                        card.style.display =
+                                            "none";
+
+                                    },
+                                    250
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           PROJECT DATA
+        ===================================================== */
+
+        const projects = {
+
+            "ai-assistant": {
+
+                icon: "🧠",
+
+                category:
+                    "AI • Education",
+
+                title:
+                    "AI Study Assistant",
+
+                description:
+                    "An AI-powered study application focused on helping students understand topics, create learning materials and practice through interactive study features.",
+
+                features: [
+                    "AI-powered study assistance",
+                    "Topic explanations",
+                    "Learning material generation",
+                    "Interactive study experience",
+                    "Student-focused interface"
+                ],
+
+                technologies: [
+                    "Python",
+                    "Streamlit",
+                    "AI APIs"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/AI-Study-Assistant"
+
+            },
+
+
+            "word-games": {
+
+                icon: "🎮",
+
+                category:
+                    "Web • Games",
+
+                title:
+                    "Word Games Arena",
+
+                description:
+                    "A browser-based gaming project containing interactive word and puzzle experiences designed around simple and engaging gameplay.",
+
+                features: [
+                    "Interactive word games",
+                    "Puzzle gameplay",
+                    "Responsive interface",
+                    "Browser-based experience",
+                    "Game-focused UI"
+                ],
+
+                technologies: [
+                    "HTML",
+                    "CSS",
+                    "JavaScript"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/Word-Games-Arena"
+
+            },
+
+
+            "study-helper": {
+
+                icon: "🤖",
+
+                category:
+                    "AI • Education",
+
+                title:
+                    "AI Study Helper",
+
+                description:
+                    "An educational AI application designed to help students study, practice questions and create useful learning resources.",
+
+                features: [
+                    "AI explanations",
+                    "Study tools",
+                    "Practice questions",
+                    "Student profile",
+                    "Learning progress"
+                ],
+
+                technologies: [
+                    "Python",
+                    "Streamlit",
+                    "Google Gemini",
+                    "Firebase"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/AI-Study-Helper"
+
+            },
+
+
+            "studypro": {
+
+                icon: "📚",
+
+                category:
+                    "AI • Education",
+
+                title:
+                    "StudyPro AI",
+
+                description:
+                    "A study-focused AI project designed around multiple learning modes and tools for creating study material.",
+
+                features: [
+                    "Summaries",
+                    "Quiz generation",
+                    "Detailed notes",
+                    "Flashcards",
+                    "Mind maps",
+                    "Progress features"
+                ],
+
+                technologies: [
+                    "Python",
+                    "Streamlit",
+                    "Google Gemini",
+                    "Firebase"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/StudyPro-AI"
+
+            },
+
+
+            "codeforge": {
+
+                icon: "🧑‍💻",
+
+                category:
+                    "AI • Development",
+
+                title:
+                    "CodeForge AI Studio",
+
+                description:
+                    "An AI-focused development project exploring how artificial intelligence can assist developers with coding and software development workflows.",
+
+                features: [
+                    "AI development tools",
+                    "Coding assistance",
+                    "Interactive interface",
+                    "Developer-focused workflow",
+                    "AI experimentation"
+                ],
+
+                technologies: [
+                    "Python",
+                    "Streamlit",
+                    "AI"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/CodeForge-AI-Studio"
+
+            },
+
+
+            "developer": {
+
+                icon: "💻",
+
+                category:
+                    "Web • Portfolio",
+
+                title:
+                    "Ahmed Faisal Developer",
+
+                description:
+                    "A developer portfolio project designed to present development skills, projects and work in a professional web interface.",
+
+                features: [
+                    "Developer profile",
+                    "Project showcase",
+                    "Responsive layout",
+                    "Skills presentation",
+                    "Contact section"
+                ],
+
+                technologies: [
+                    "HTML",
+                    "CSS",
+                    "JavaScript"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/Ahmed-Faisal-Developer"
+
+            },
+
+
+            "dev-studio": {
+
+                icon: "💼",
+
+                category:
+                    "Business • Python",
+
+                title:
+                    "Ahmed Dev Studio",
+
+                description:
+                    "A project request and management platform created as a practical portfolio project for organizing development requests and project information.",
+
+                features: [
+                    "Project request form",
+                    "Service selection",
+                    "Project type selection",
+                    "Priority management",
+                    "Order status management",
+                    "Customer information",
+                    "Project organization"
+                ],
+
+                technologies: [
+                    "Python",
+                    "Streamlit",
+                    "SQLite"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/Ahmed_Dev_Studio"
+
+            },
+
+
+            "bizmanager": {
+
+                icon: "📊",
+
+                category:
+                    "Business • Dashboard",
+
+                title:
+                    "BizManager",
+
+                description:
+                    "A business management dashboard created to organize business information and provide practical tools for managing business data.",
+
+                features: [
+                    "Business dashboard",
+                    "Data management",
+                    "Business statistics",
+                    "Organized records",
+                    "Interactive interface",
+                    "Database integration"
+                ],
+
+                technologies: [
+                    "Python",
+                    "Streamlit",
+                    "SQLite"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/BizManager"
+
+            },
+
+
+            "pizza": {
+
+                icon: "🍕",
+
+                category:
+                    "Web • Interactive",
+
+                title:
+                    "Customize Pizza",
+
+                description:
+                    "An interactive web project focused on letting users create and customize their own pizza choices through a browser-based interface.",
+
+                features: [
+                    "Pizza customization",
+                    "Interactive selections",
+                    "Dynamic interface",
+                    "Responsive design",
+                    "Browser-based experience"
+                ],
+
+                technologies: [
+                    "HTML",
+                    "CSS",
+                    "JavaScript"
+                ],
+
+                github:
+                    "https://github.com/AhmedFaisalCareer/Customize-Pizza"
+
+            }
+
+        };
+
+
+        /* =====================================================
+           PROJECT MODAL
+        ===================================================== */
+
+        const modal =
+            document.getElementById(
+                "projectModal"
+            );
+
+        const modalIcon =
+            document.getElementById(
+                "modalIcon"
+            );
+
+        const modalCategory =
+            document.getElementById(
+                "modalCategory"
+            );
+
+        const modalTitle =
+            document.getElementById(
+                "modalTitle"
+            );
+
+        const modalDescription =
+            document.getElementById(
+                "modalDescription"
+            );
+
+        const modalFeatures =
+            document.getElementById(
+                "modalFeatures"
+            );
+
+        const modalTech =
+            document.getElementById(
+                "modalTech"
+            );
+
+        const modalGithub =
+            document.getElementById(
+                "modalGithub"
+            );
+
+
+        function openProject(projectId) {
+
+            const project =
+                projects[projectId];
+
+            if (!project) {
+                return;
+            }
+
+
+            modalIcon.textContent =
+                project.icon;
+
+            modalCategory.textContent =
+                project.category;
+
+            modalTitle.textContent =
+                project.title;
+
+            modalDescription.textContent =
+                project.description;
+
+
+            modalFeatures.innerHTML = "";
+
+            project.features.forEach(
+                function (feature) {
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+                    div.className =
+                        "modal-feature";
+
+                    div.textContent =
+                        feature;
+
+                    modalFeatures.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+
+            modalTech.innerHTML = "";
+
+            project.technologies.forEach(
+                function (technology) {
+
+                    const span =
+                        document.createElement(
+                            "span"
+                        );
+
+                    span.textContent =
+                        technology;
+
+                    modalTech.appendChild(
+                        span
+                    );
+
+                }
+            );
+
+
+            modalGithub.href =
+                project.github;
+
+
+            modal.classList.add("active");
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+        }
+
+
+        function closeProject() {
+
+            modal.classList.remove("active");
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+        }
+
+
+        modal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeProject();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeProject();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           ACTIVE NAVIGATION
+        ===================================================== */
+
+        const sections =
+            document.querySelectorAll(
+                "section[id]"
+            );
+
+        const navAnchors =
+            document.querySelectorAll(
+                ".nav-links a"
+            );
+
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                let current = "";
+
+                sections.forEach(
+                    function (section) {
+
+                        const sectionTop =
+                            section.offsetTop - 180;
+
+                        if (
+                            window.scrollY >=
+                            sectionTop
+                        ) {
+
+                            current =
+                                section.getAttribute(
+                                    "id"
+                                );
+
+                        }
+
+                    }
+                );
+
+
+                navAnchors.forEach(
+                    function (link) {
+
+                        link.classList.remove(
+                            "active"
+                        );
+
+
+                        const href =
+                            link.getAttribute(
+                                "href"
+                            );
+
+
+                        if (
+                            href ===
+                            "#" + current
+                        ) {
+
+                            link.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           PARTICLE BACKGROUND
+        ===================================================== */
+
+        const canvas =
+            document.getElementById(
+                "particles"
+            );
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        let particles = [];
+
+        let mouse = {
+            x: null,
+            y: null
+        };
+
+
+        function resizeCanvas() {
+
+            canvas.width =
+                window.innerWidth;
+
+            canvas.height =
+                window.innerHeight;
+
+        }
+
+
+        resizeCanvas();
+
+
+        window.addEventListener(
+            "resize",
+            resizeCanvas
+        );
+
+
+        window.addEventListener(
+            "mousemove",
+            function (event) {
+
+                mouse.x =
+                    event.clientX;
+
+                mouse.y =
+                    event.clientY;
+
+            }
+        );
+
+
+        function createParticles() {
+
+            particles = [];
+
+            const amount =
+                window.innerWidth < 700
+                    ? 35
+                    : 75;
+
+
+            for (
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                particles.push({
+
+                    x:
+                        Math.random() *
+                        canvas.width,
+
+                    y:
+                        Math.random() *
+                        canvas.height,
+
+                    size:
+                        Math.random() * 1.8 + 0.5,
+
+                    speedX:
+                        (Math.random() - 0.5) *
+                        0.25,
+
+                    speedY:
+                        (Math.random() - 0.5) *
+                        0.25
+
+                });
+
+            }
+
+        }
+
+
+        createParticles();
+
+
+        function animateParticles() {
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            particles.forEach(
+                function (particle, index) {
+
+                    particle.x +=
+                        particle.speedX;
+
+                    particle.y +=
+                        particle.speedY;
+
+
+                    if (
+                        particle.x < 0 ||
+                        particle.x >
+                        canvas.width
+                    ) {
+
+                        particle.speedX *= -1;
+
+                    }
+
+
+                    if (
+                        particle.y < 0 ||
+                        particle.y >
+                        canvas.height
+                    ) {
+
+                        particle.speedY *= -1;
+
+                    }
+
+
+                    ctx.beginPath();
+
+                    ctx.arc(
+                        particle.x,
+                        particle.y,
+                        particle.size,
+                        0,
+                        Math.PI * 2
+                    );
+
+                    ctx.fillStyle =
+                        "rgba(56, 189, 248, 0.45)";
+
+                    ctx.fill();
+
+
+                    for (
+                        let j = index + 1;
+                        j < particles.length;
+                        j++
+                    ) {
+
+                        const other =
+                            particles[j];
+
+
+                        const dx =
+                            particle.x -
+                            other.x;
+
+                        const dy =
+                            particle.y -
+                            other.y;
+
+                        const distance =
+                            Math.sqrt(
+                                dx * dx +
+                                dy * dy
+                            );
+
+
+                        if (distance < 105) {
+
+                            ctx.beginPath();
+
+                            ctx.moveTo(
+                                particle.x,
+                                particle.y
+                            );
+
+                            ctx.lineTo(
+                                other.x,
+                                other.y
+                            );
+
+                            ctx.strokeStyle =
+                                "rgba(56, 189, 248, 0.055)";
+
+                            ctx.lineWidth = 1;
+
+                            ctx.stroke();
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+            requestAnimationFrame(
+                animateParticles
+            );
+
+        }
+
+
+        animateParticles();
+
+
+        /* =====================================================
+           YEAR
+        ===================================================== */
+
+        document.getElementById(
+            "year"
+        ).textContent =
+            new Date().getFullYear();
+
+    </script>
+
+</body>
+</html>
